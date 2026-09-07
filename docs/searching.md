@@ -122,7 +122,10 @@ vera convert filing.md archives/src_aaa.vera --metadata company=GRID --json
 
 `--include` and `--exclude` choose files by relative path (discovery), not
 metadata. `--include` on a single-file search exits 2. Desktop Search and Ask
-do not expose `--where`; use the CLI or MCP.
+do not expose `--where`; use the CLI or MCP. Indexed directory search can
+apply a `--where` key only when it is a citation column or present on every
+indexed archive; otherwise the search falls back to per-file filtering so
+chunk-only tags on sibling files are not dropped.
 
 To reload one stored chunk by id — for example to verify that a quoted span is
 still in the chunk body — use `vera get FILE CHUNK_ID --json` (MCP:

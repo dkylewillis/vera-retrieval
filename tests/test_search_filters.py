@@ -396,21 +396,66 @@ def test_indexed_archive_where_and_chunk_fallback(tmp_path: Path) -> None:
         assert all(hit.record.metadata.get("source_filename") == "grid.md" for hit in cited)
 
 
-def _chunk_only_archive(path: Path, discipline: str, text: str) -> None:
+def test_indexed_where_falls_back_when_key_is_only_on_some_archives(tmp_path: Path) -> None:
+    library = tmp_path / "library"
+    library.mkdir()
+    _convert_company(library / "modern.vera", "GRID", sections=6)
+    _chunk_only_archive(
+        library / "legacy.vera",
+        "civil",
+        "GRID adding capacity for the pond.",
+        extra_metadata={"company": "GRID"},
+    )
+    build_library_index(str(library))
+
+    with VeraCorpus.open(str(library)) as indexed:
+        results = indexed.search(
+            "adding capacity",
+            mode="keyword",
+            top_k=8,
+            where={"company": "GRID"},
+        )
+        report = indexed.index_search_report()
+        assert report["used"] is False
+        assert CHUNK_METADATA_FILTER_REASON in report["reasons"]
+        assert {Path(hit.file).name for hit in results} == {"modern.vera", "legacy.vera"}
+
+    with VeraCorpus.open(str(library), use_index=False) as direct:
+        direct_results = direct.search(
+            "adding capacity",
+            mode="keyword",
+            top_k=8,
+            where={"company": "GRID"},
+        )
+        assert {Path(hit.file).name for hit in direct_results} == {
+            "modern.vera",
+            "legacy.vera",
+        }
+
+
+def _chunk_only_archive(
+    path: Path,
+    discipline: str,
+    text: str,
+    extra_metadata: dict[str, object] | None = None,
+) -> None:
+    metadata = {
+        "document_id": "document_0001",
+        "source_filename": path.name,
+        "page_start": 1,
+        "page_end": 1,
+        "heading_path": "Notes",
+        "discipline": discipline,
+    }
+    if extra_metadata:
+        metadata.update(extra_metadata)
     with VeraDocument.create(path) as document:
         document.add(
             [
                 ChunkRecord(
                     id="chunk_0001",
                     text=text,
-                    metadata={
-                        "document_id": "document_0001",
-                        "source_filename": path.name,
-                        "page_start": 1,
-                        "page_end": 1,
-                        "heading_path": "Notes",
-                        "discipline": discipline,
-                    },
+                    metadata=metadata,
                 )
             ]
         )

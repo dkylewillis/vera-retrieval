@@ -105,8 +105,8 @@ matches may still be returned.
 
 When `recursive`, `excludes`, and `includes` are null and an index exists, the
 corpus uses the index's saved discovery settings. `where` uses the same AND / IN
-semantics as the CLI. Chunk-only metadata filters that are not in the collection
-index set `index.used` to false.
+semantics as the CLI. Metadata filters that are not citation columns and not
+present on every indexed archive set `index.used` to false.
 
 ### `vera_inspect`
 

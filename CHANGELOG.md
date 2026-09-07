@@ -10,6 +10,12 @@ reconvert files created with 0.2 tooling in order to search or inspect them.
 
 ### Fixed
 
+- Indexed directory search no longer treats a `--where` key as archive-wide
+  when only some indexed files carry it. Mixed libraries that stamp the key
+  on some archives and only on chunks in others now fall back to per-file
+  search instead of dropping those chunk matches while `index.used` stayed
+  true.
+
 - `vera get` / MCP `vera_get_chunk` JSON locators (`ok`, `file`, `path`) are
   applied after chunk metadata so caller tags cannot spoof a failed get or
   attribute a chunk to another archive. Convert `--metadata` now rejects
@@ -21,9 +27,10 @@ reconvert files created with 0.2 tooling in order to search or inspect them.
 - Convert `--metadata KEY=VALUE` stamps caller tags onto archive metadata and
   every chunk. Search `--where KEY=VALUE` filters stored metadata before
   `top_k` (AND across keys; comma-separated values are IN). Directory search
-  and `vera index build` accept `--include PATTERN`. Chunk-only `where` keys
-  that are not in the collection index fall back to per-file search with
-  `index.used=false` and `chunk metadata filter not in collection index`.
+  and `vera index build` accept `--include PATTERN`. `where` keys that are
+  not citation columns and not present on every indexed archive fall back
+  to per-file search with `index.used=false` and
+  `chunk metadata filter not in collection index`.
   MCP `vera_search` / `vera_corpus_search` take the same `where` / `includes`
   arguments.
 

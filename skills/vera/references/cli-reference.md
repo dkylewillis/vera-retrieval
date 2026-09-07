@@ -334,7 +334,11 @@ Options:
   are IN. Repeated flags for the same key union the IN set. Values coerce
   like `--pipeline-option`. A missing key fails the predicate. List-valued
   *stored* metadata is not an IN clause. Empty comma tokens are an error
-  (exit 2). Do not post-filter the JSON `results` array. Desktop Search
+  (exit 2). Do not post-filter the JSON `results` array. Directory search
+  uses the collection index only when every `--where` key is a citation
+  column or is present on every indexed archive; otherwise it falls back
+  to per-file search and sets `index.used` false with
+  `chunk metadata filter not in collection index`. Desktop Search
   and Ask have no `--where` control.
 - `--json` emits one JSON object.
 

@@ -149,10 +149,11 @@ prints the same entries as warnings.
 post-filter the JSON `results` array. Values coerce like `--pipeline-option`.
 A missing key fails the predicate. List-valued *stored* metadata is not an
 IN clause. `--include` and `--exclude` choose
-files during discovery. When a `--where` key is not archive metadata or an
+files during discovery. When a `--where` key is not present on every indexed archive and is not an
 indexed citation column, directory search falls back to per-file search and
 sets `index.used` to false with `chunk metadata filter not in collection index`
-in `index.reasons`. `--include` on a single-file search exits 2.
+in `index.reasons`. A key that exists on only some archives is not treated as
+archive-wide. `--include` on a single-file search exits 2.
 
 ## `vera index build DIRECTORY`
 

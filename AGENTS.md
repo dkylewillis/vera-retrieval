@@ -167,7 +167,8 @@ dimension-incompatible. Result order is the rank; the CLI does not emit a
    caller tags with `--metadata KEY=VALUE` onto the archive and every chunk.
    Reserved citation, format, and JSON locator keys (`file`, `path`, `ok`,
    `error`) are rejected. When a metadata filter cannot
-   run inside a collection index, `index.used` is false and `index.reasons`
+   run inside a collection index — including a key that is not present on
+   every indexed archive — `index.used` is false and `index.reasons`
    includes `chunk metadata filter not in collection index`.
 
 For the complete reusable workflow, load [skills/vera/SKILL.md](skills/vera/SKILL.md).
