@@ -880,6 +880,11 @@ def test_index_ask_and_embedder_operational_docs():
     assert "retainedGeneration" not in structure
     assert "build.lock" in structure
     assert "deletes every other generation directory" in libraries
+    assert "not present on every indexed" in libraries
+    assert "not treated as archive-wide" in libraries
+    assert "present on every" in searching and "indexed archive" in searching
+    assert "not present on every indexed archive" in python_api
+    assert "present on every indexed archive" in skill_cli
     assert "No .vera files found in" in troubleshooting
     assert "list_embedder_load_errors" in troubleshooting
     assert "provider_error_detail" in troubleshooting

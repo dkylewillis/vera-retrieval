@@ -165,21 +165,32 @@ class VeraCollectionIndex:
             )
         return self._matrices[filename]
 
-    def _archive_metadata_keys(self) -> set[str]:
-        keys: set[str] = set()
+    def _universal_archive_metadata_keys(self) -> set[str]:
+        """Keys present on every indexed archive.
+
+        A key that appears on only some archives is not safe for index-side
+        file filters: sibling archives may still match the same key on chunks,
+        and the index does not store those chunk tags.
+        """
+        universal: set[str] | None = None
         for row in self.conn.execute("SELECT metadata_json FROM files"):
             try:
                 payload = json.loads(row["metadata_json"] or "{}")
             except (TypeError, json.JSONDecodeError):
-                continue
-            if isinstance(payload, dict):
-                keys.update(payload)
-        return keys
+                payload = {}
+            if not isinstance(payload, dict):
+                payload = {}
+            keys = set(payload)
+            if universal is None:
+                universal = keys
+            else:
+                universal &= keys
+        return universal or set()
 
     def _partition_where(
         self, where: Mapping[str, Any]
     ) -> tuple[dict[str, Any], dict[str, Any], list[str]]:
-        archive_keys = self._archive_metadata_keys()
+        archive_keys = self._universal_archive_metadata_keys()
         file_where: dict[str, Any] = {}
         chunk_where: dict[str, Any] = {}
         unknown: list[str] = []
@@ -193,7 +204,9 @@ class VeraCollectionIndex:
         return file_where, chunk_where, unknown
 
     def supports_where(self, where: Mapping[str, Any] | None) -> bool:
-        """Return True when every ``where`` key is archive metadata or a citation column."""
+        """Return True when every ``where`` key is a citation column or is
+        present on every indexed archive.
+        """
         if not where:
             return True
         _, _, unknown = self._partition_where(where)

@@ -321,7 +321,9 @@ update_library_index("./library")
 
 The `.vera-index/` directory is derived and rebuildable. The `.vera` files
 remain the source of truth. A successful `build_library_index` deletes every
-other generation directory after swapping `current.json`.
+other generation directory after swapping `current.json`. `where` filters
+that are not citation columns and not present on every indexed archive fall
+back to per-file search so chunk-only tags on sibling files are not dropped.
 
 ## Evaluation and MCP
 

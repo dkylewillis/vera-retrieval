@@ -163,12 +163,15 @@ search. The JSON response sets `index.used` to false and lists the reason:
 
 This preserves correctness while making the performance change visible.
 
-When `--where` uses a chunk-only metadata key that is not stored in the
-collection index, VERA also falls back to per-file search even if the index
-is otherwise fresh. `index.used` is false and `index.reasons` includes
-`chunk metadata filter not in collection index`. Archive-level keys stamped
-at convert time (and citation columns already in the index) can filter the
-indexed search before `top_k`. Do not post-filter the JSON `results` array.
+When `--where` uses a metadata key that is not present on every indexed
+archive and is not a citation column stored in the collection index, VERA
+also falls back to per-file search even if the index is otherwise fresh.
+`index.used` is false and `index.reasons` includes
+`chunk metadata filter not in collection index`. A key stamped on only some
+archives is not treated as archive-wide; sibling files may still match it on
+chunks. Keys present on every archive (typically convert `--metadata`) and
+citation columns already in the index can filter the indexed search before
+`top_k`. Do not post-filter the JSON `results` array.
 
 `vera index status --json` also reports the active generation and timestamps,
 database/vector/total storage, `indexed_chunks` versus `source_chunks`

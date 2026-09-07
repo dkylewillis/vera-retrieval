@@ -102,7 +102,9 @@ rollback history. `vera eval` opens one `.vera` archive, not a directory.
   or `--include PATTERN` (path discovery). Do not drop hits from JSON after
   search. Stamp keys at convert time with `--metadata KEY=VALUE`. Do not
   stamp `file`, `path`, `ok`, or `error` — those are get/search JSON
-  locators.
+  locators. A `--where` key that is not a citation column and not present
+  on every indexed archive falls back to per-file search (`index.used`
+  false, `chunk metadata filter not in collection index`).
 
 ## Citations and evidence
 
