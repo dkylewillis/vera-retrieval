@@ -249,6 +249,14 @@ Metadata is extensible. `default_embedding_normalization` is `l2`, `none`, or
 Summary counts, embedding dimensions, attachment counts, and
 `archive_size_bytes` are integers.
 
+`ocr` is the pipeline `diagnostics` dict (historical key). Text-mode inspect
+omits it. PyMuPDF writes `ocr_engine`, `ocr_mode`, `ocr_language`, `ocr_dpi`,
+and `ocr_pages` (1-based pages that ran Tesseract). Docling writes `engine`
+(`docling`), `source_format`, `recovered_pages`, and optionally
+`pdf_backend`, `recovered_pages_backend`, `whole_document_fallback_backend`,
+and `whole_document_fallback_strategy` (`document` or `batched`). Markdown writes `ocr: {}`.
+Desktop Document Info summarizes PyMuPDF-shaped keys only.
+
 ### `vera get FILE CHUNK_ID`
 
 Fetch one stored chunk by exact `chunks.chunk_id`. `FILE` is a single `.vera`
