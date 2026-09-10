@@ -10,6 +10,11 @@ reconvert files created with 0.2 tooling in order to search or inspect them.
 
 ### Fixed
 
+- Desktop **Reconvert…** now writes to the clicked `.vera` archive. Previously
+  Convert always used `source.with_suffix(".vera")`, so a renamed archive or
+  `vera convert report.pdf project-alpha.vera` left the clicked file stale and
+  could overwrite a same-stem sibling archive.
+
 - `vera get` / MCP `vera_get_chunk` JSON locators (`ok`, `file`, `path`) are
   applied after chunk metadata so caller tags cannot spoof a failed get or
   attribute a chunk to another archive. Convert `--metadata` now rejects

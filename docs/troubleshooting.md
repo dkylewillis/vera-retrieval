@@ -122,6 +122,7 @@ The archive was created without the original document or is damaged. Export
 cannot reconstruct the PDF from parsed text. Locate the source PDF and
 reconvert it. In the desktop app, right-click the `.vera` file and choose
 **Reconvert…** when the original PDF is beside the archive or stored inside it.
+That replaces the archive you clicked, even if you renamed it.
 
 If Reconvert shows **Could not read archive metadata**, inspect failed and no
 sibling PDF was listed, so the app does not export an embedded original.
