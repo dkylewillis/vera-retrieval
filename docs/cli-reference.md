@@ -40,11 +40,11 @@ Options:
   Transformers models need the `ml` extra, and the Windows installer vendors a
   VERA-exported MiniLM graph. MiniLM uses ONNX Runtime when a graph is present
   and Sentence Transformers otherwise. OpenAI embeddings ship with
-  `vera-cli` as `vera-embed-openai`; set `OPENAI_API_KEY`. Archives converted
+  `vera` as `vera-embed-openai`; set `OPENAI_API_KEY`. Archives converted
   with OpenAI are not portable for semantic search)
 - `--parser PARSER` (omitted: choose from the file extension — PDF → `pymupdf`,
   Markdown → `markdown`, DOCX/PPTX/XLSX/HTML → `docling` when
-  `vera-cli[docling]` is installed; accepts `provider[:variant]` specs such as
+  `vera[docling]` is installed; accepts `provider[:variant]` specs such as
   `docling` / `docling:hybrid`; unknown
   providers exit with an error; the 0.3.x Windows installer does not include
   Docling)

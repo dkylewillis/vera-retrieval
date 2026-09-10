@@ -3,7 +3,7 @@
 An ingest pipeline turns a source document into a normalized `IngestResult`
 that shared conversion writes into a `.vera` archive. `vera-ingest-pymupdf`
 and `vera-ingest-docling` are both ordinary plugins built on this contract —
-nothing in `vera-ingest`, `vera-cli`, or `vera-app` special-cases either one.
+nothing in `vera-ingest`, `vera`, or `vera-app` special-cases either one.
 Write your own to support a new source format, a different parsing engine, or
 an experimental chunking strategy. Name the package after the engine
 (`vera-ingest-example`), not the file type; advertise extensions on

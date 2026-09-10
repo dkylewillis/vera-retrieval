@@ -63,7 +63,7 @@ vera convert notes.md notes.vera --json
 vera convert memo.docx memo.vera --json
 vera convert notes.html notes.vera --json
 
-# Docling (optional CLI extra: vera-cli[docling] or --extra docling; not in the 0.3.0 desktop app)
+# Docling (optional CLI extra: vera[docling] or --extra docling; not in the 0.3.0 desktop app)
 vera convert scan.pdf scan.vera --parser docling --json
 vera convert scan.pdf scan.vera --parser docling --pipeline-option pdf_backend=pypdfium2 --json
 
@@ -192,7 +192,7 @@ VERA ships an MCP server (stdio) exposing the same capabilities as tools:
 | `vera_get_chunk` | Fetch one stored chunk by id as citation-ready JSON |
 | `vera_get_chunk_regions` | Page numbers + bounding boxes a chunk's text came from (visual grounding) |
 
-Requires the integration package: `pip install "vera-cli[mcp]"` or `pip install vera-mcp`. Example VS Code config
+Requires the integration package: `pip install "vera[mcp]"` or `pip install vera-mcp`. Example VS Code config
 (`.vscode/mcp.json`):
 
 ```json

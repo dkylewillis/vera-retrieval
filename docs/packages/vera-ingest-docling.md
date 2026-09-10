@@ -15,7 +15,7 @@ workspace `.venv` (CLI and tests). It is not bundled in the installer.
 Non-desktop users can also:
 
 ```bash
-pip install "vera-cli[docling]>=0.3.0"
+pip install "vera[docling]>=0.3.0"
 ```
 
 The 0.3.0 Windows app does not freeze this pipeline or list **Advanced layout
@@ -144,7 +144,7 @@ fidelity compared with `docling_parse`.
 
 The 0.3.0 desktop Convert view does not list Docling. Use this package from
 the CLI (`vera convert --parser docling`, or omit `--parser` on DOCX/PPTX/XLSX/HTML)
-after installing `vera-cli[docling]`.
+after installing `vera[docling]`.
 Pipeline descriptors still omit overlap and OCR DPI when a future desktop
 host lists the plugin.
 

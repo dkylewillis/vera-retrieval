@@ -7,7 +7,7 @@ as native tools. Use it when an MCP-capable application should search local
 ## Install
 
 ```bash
-python -m pip install "vera-cli[mcp]>=0.3.0"
+python -m pip install "vera[mcp]>=0.3.0"
 ```
 
 Verify that the server can start:
@@ -222,7 +222,7 @@ with `vera figures --out-dir` instead).
 Install:
 
 ```bash
-python -m pip install "vera-cli[mcp]>=0.3.0"
+python -m pip install "vera[mcp]>=0.3.0"
 ```
 
 That extra installs `vera-mcp` and pins the MCP Python SDK to `mcp>=1.0,<2`.

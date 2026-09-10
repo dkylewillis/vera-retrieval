@@ -4,7 +4,7 @@ Default PyMuPDF ingest pipeline plugin for VERA. Install it beside
 `vera-ingest` to register the `pymupdf` provider under the
 `vera.ingest_pipelines` entry-point group.
 
-`vera-cli` and `vera-app` depend on this package so PDF conversion works out
+`vera` and `vera-app` depend on this package so PDF conversion works out
 of the box.
 
 ## Install

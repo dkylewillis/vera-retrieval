@@ -325,7 +325,7 @@ other generation directory after swapping `current.json`.
 
 ## Evaluation and MCP
 
-Evaluation belongs to `vera-cli` and opens one `.vera` archive (not a
+Evaluation belongs to `vera` (`vera_cli`) and opens one `.vera` archive (not a
 directory):
 
 ```python

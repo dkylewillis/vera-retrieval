@@ -1,15 +1,15 @@
 # VERA CLI reference for agents
 
-This reference describes the current `vera-cli` command contract. The
+This reference describes the current `vera` CLI command contract. The
 console entry point is `vera`; `python -m vera_cli` invokes the same parser.
 
 ## Runtime and installation
 
 - Python: 3.10 or newer.
-- Published CLI: `pip install "vera-cli>=0.3.1"`.
+- Published CLI: `pip install "vera>=0.3.1"`.
 - Neural MiniLM embeddings require the `onnx` extra from `vera-doc`.
   Other Sentence Transformers models require the `ml` extra.
-- `vera mcp` requires `pip install "vera-cli[mcp]>=0.3.1"` or
+- `vera mcp` requires `pip install "vera[mcp]>=0.3.1"` or
   `pip install "vera-mcp>=0.3.1"`.
 - A repository checkout can use:
   `uv sync --extra dev --extra onnx --extra ml --extra app --extra mcp`.
@@ -41,7 +41,7 @@ Options:
   Transformers otherwise. Other Sentence Transformers models need the `ml` extra. The
   Windows desktop installer vendors a VERA-exported `all-MiniLM-L6-v2` ONNX
   graph. Archive identity stays `sentence-transformers/all-MiniLM-L6-v2`.
-  OpenAI embeddings ship with `vera-cli` as `vera-embed-openai`
+  OpenAI embeddings ship with `vera` as `vera-embed-openai`
   (`openai:text-embedding-3-small` / `-large`); set `OPENAI_API_KEY`. Archives
   converted with OpenAI are not portable for semantic search. Voyage and
   Ollama are not bundled.
@@ -58,7 +58,7 @@ Options:
   (or Hugging Face Hub; about 380 MB: Heron ONNX + TableFormer accurate).
   Office/HTML Docling convert does not download those PDF layout models.
   The 0.3.0 desktop app does not list or freeze this pipeline; use
-  `vera-cli[docling]`. An incomplete cache resumes instead of failing
+  `vera[docling]`. An incomplete cache resumes instead of failing
   offline. Stopping mid-download does not abort Hugging Face immediately.
 - `--chunk-size N`. Compatibility alias; omitted uses the selected pipeline's
   default. Forwarded only when the selected pipeline advertises a `chunk_size`

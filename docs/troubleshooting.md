@@ -6,7 +6,7 @@ Verify the active Python environment:
 
 ```bash
 python --version
-python -m pip show vera-cli
+python -m pip show vera
 python -m vera_cli --help
 ```
 
@@ -284,7 +284,7 @@ For Docling, install the official extra and convert from the CLI. The 0.3.0
 desktop app does not list Advanced layout:
 
 ```bash
-pip install "vera-cli[docling]>=0.3.0"
+pip install "vera[docling]>=0.3.0"
 # or from a checkout:
 uv sync --extra docling
 vera convert "input.pdf" --parser docling
@@ -430,7 +430,7 @@ interpreter when the sidecar fails to import numpy, PyMuPDF, or pdfplumber.
 Install the optional dependency:
 
 ```bash
-python -m pip install "vera-cli[mcp]"
+python -m pip install "vera[mcp]"
 ```
 
 Install the extra, not a bare `mcp` package. `vera-mcp` requires `mcp>=1.0,<2`
